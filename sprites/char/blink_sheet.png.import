@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xc6wykfpb1qe"
-path="res://.godot/imported/run7.png-33aa61cbba1048b8d4929ca489062674.ctex"
+uid="uid://cgr2km4f2r521"
+path="res://.godot/imported/blink_sheet.png-a19360955610e54dd3d4cd4ede79b1f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/char/run7.png"
-dest_files=["res://.godot/imported/run7.png-33aa61cbba1048b8d4929ca489062674.ctex"]
+source_file="res://sprites/char/blink_sheet.png"
+dest_files=["res://.godot/imported/blink_sheet.png-a19360955610e54dd3d4cd4ede79b1f6.ctex"]
 
 [params]
 
