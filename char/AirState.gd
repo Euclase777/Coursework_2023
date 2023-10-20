@@ -11,6 +11,8 @@ class_name AirState
 @export var air_dashes : int = 2
 @export var double_jumps : int = 2
 
+@onready var wallcheck : RayCast2D = $"../../WallJumpCheck"
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func on_enter():
@@ -28,33 +30,31 @@ func state_input(event : InputEvent):
 	if (event.is_action_pressed("move_down")):
 		character.velocity.y = 1000
 		character.velocity.x = 0
-	if (event.is_action_pressed("hold")):
-		gravity = 0
-		character.velocity.y = 10
-	else:
-		gravity = 735
 		
 func _physics_process(delta):
-		# Add the gravity.
-		if character.is_on_wall() && character.velocity.y > 0:
-			character.velocity.y += gravity * delta * 0.5
-		else:
-			character.velocity.y += gravity * delta
+	# Add the gravity.
+	character.velocity.y += gravity * delta
+	
 
 func state_process(delta):
 	if character.is_on_floor():
 		playback.travel("Move")
 		air_dashes = 2
 		next_state = ground_state
-	elif character.is_on_wall():
+	elif wallcheck.is_colliding():
 		playback.travel("wall_slide")
 	else:
 		playback.travel("jump_end")
 
 func double_jump():
-	if character.is_on_wall():
+	if wallcheck.is_colliding():
 		character.velocity.y = wall_jump_velocity * 1.5
-		character.velocity.x = -character.direction.x * character.speed * 10
+		if character.sprite.flip_h:
+			character.velocity.x = character.speed * 10
+		else: 
+			character.velocity.x = character.speed * -10
+		character.sprite.flip_h = not character.sprite.flip_h
+		wallcheck.target_position = -wallcheck.target_position
 	elif double_jumps > 0:
 		character.velocity.y = double_jump_velocity 
 		double_jumps -= 1

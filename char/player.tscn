@@ -531,7 +531,6 @@ script = ExtResource("1_s8w44")
 texture = ExtResource("3_0j3mp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_a62mc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -543,7 +542,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_c3ana")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Move/blend_position = -0.00232559
+parameters/Move/blend_position = -0.00121802
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
 script = ExtResource("4_yt0ns")
@@ -588,12 +587,15 @@ character = NodePath("..")
 state_machine = NodePath("../CharacterStateMachine")
 air_state = NodePath("../CharacterStateMachine/Air")
 
-[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("character")]
+[node name="Area2DBlink" type="Area2D" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("14_h1w67")
 character = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DBlink"]
 shape = SubResource("RectangleShape2D_oy7bf")
 
-[connection signal="body_entered" from="Area2D" to="CharacterStateMachine/Blink" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="CharacterStateMachine/Blink" method="_on_area_2d_body_exited"]
+[node name="WallJumpCheck" type="RayCast2D" parent="."]
+target_position = Vector2(32, 0)
+
+[connection signal="body_entered" from="Area2DBlink" to="CharacterStateMachine/Blink" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2DBlink" to="CharacterStateMachine/Blink" method="_on_area_2d_body_exited"]
