@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk0mmp6sbwjly"]
+[gd_scene load_steps=8 format=3 uid="uid://bk0mmp6sbwjly"]
 
 [ext_resource type="PackedScene" uid="uid://d33fk2rnycy2j" path="res://char/player.tscn" id="3_3pc05"]
+[ext_resource type="Texture2D" uid="uid://ciy2nn7geug2v" path="res://sprites/background.png" id="4_u2xjf"]
 [ext_resource type="Texture2D" uid="uid://cw0fy0nwrj5xy" path="res://sprites/tiles/Neon.png" id="17_w63cp"]
 [ext_resource type="Script" path="res://TileMap.gd" id="21_vvuc8"]
 
@@ -265,16 +266,12 @@ drag_top_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0)
+motion_mirroring = Vector2(1366, 0)
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 32.0
-offset_top = 36.0
-offset_right = 202.0
-offset_bottom = 63.0
-allow_greater = true
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("4_u2xjf")
+offset = Vector2(683, 384)
