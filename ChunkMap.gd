@@ -11,9 +11,8 @@ var tile_size = 64  # tile size (in pixels)
 var width = 2  # width of map (in tiles)
 var height = 1  # height of map (in tiles)
 
-# get a reference to the map for convenience
 @onready var Map = $"."
-
+@onready var player = $"../Player"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -28,18 +27,19 @@ var road_to_atlas={'sw':Vector2i(0,0), 'se':Vector2i(1,0), 'sn':Vector2i(2,0),
 var sides={'n':Vector2i(0,-1),'s':Vector2i(0,1),
 		   'e':Vector2i(-1,0),'w':Vector2i(1,0)}
 
+var current = Vector2i(0,0)
+
 var roads = {}
+var end = 'w'
+var start= 'e'
 
 func make_map():
 	clear()
 	roads = {}
-	var current = Vector2i(0,0)
-	roads[current]=road_to_atlas['we']
-	var end = 'w'
-	var start = sides.find_key(-sides[end])
+	roads[current]=road_to_atlas[start+end]
 	var stuck
 	var set_neighbours = Array()
-	for i in 100:
+	for i in 10:
 		current += sides[end]
 		end = pick_new(start)
 		stuck = 0
@@ -51,6 +51,7 @@ func make_map():
 			print("ERROR AT:", current)
 		roads[current]=road_to_atlas[start+end]
 		set_cell(0,current,0,roads[current])
+		Events.emit_signal("load_chunk",current, roads[current])
 		start = sides.find_key(-sides[end])
 		
 
@@ -77,5 +78,7 @@ func pick_new(direction):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("new"):
+	if abs((player.chunk.length_squared() - current.length_squared()))<3:
+		print('regenerating')
+		print(player.chunk.length_squared() - current.length_squared())
 		make_map()

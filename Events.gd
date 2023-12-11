@@ -1,3 +1,3 @@
 extends Node
 
-signal bonus(type, duration)
+signal load_chunk(chunk, type)

@@ -576,7 +576,7 @@ air_state = NodePath("../Air")
 ground_state = NodePath("../Ground")
 can_move = false
 
-[node name="DebugLabel" type="Label" parent="." node_paths=PackedStringArray("character", "state_machine", "air_state")]
+[node name="DebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine", "air_state")]
 offset_left = -65.0
 offset_top = -165.0
 offset_right = 68.0
@@ -586,7 +586,6 @@ Double Jumps:
 Dashes: "
 horizontal_alignment = 1
 script = ExtResource("10_nt7jm")
-character = NodePath("..")
 state_machine = NodePath("../CharacterStateMachine")
 air_state = NodePath("../CharacterStateMachine/Air")
 

@@ -1,6 +1,6 @@
 extends Label
 
-@export var character : CharacterBody2D
+@onready var character : CharacterBody2D = $".."
 @export var state_machine : CharacterStateMachine
 @export var air_state : State
 
@@ -19,4 +19,5 @@ func _process(delta):
 	text = "State : " + state_machine.current_state.name 
 	text += "\nDouble Jumps: " + str(air_state.double_jumps) 
 	text += "\n Dashes: " + str(air_state.air_dashes)
-	text += "\n" + str((character.position / Vector2(8,8)).floor())
+	text += "\n" + str(character.block)
+	text += "\n" + str(character.chunk)

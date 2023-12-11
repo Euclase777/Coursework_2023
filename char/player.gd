@@ -11,9 +11,14 @@ extends CharacterBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var direction : Vector2 = Vector2.ZERO
-
+var block : Vector2i
+var chunk : Vector2i
 func _ready():
 	animation_tree.active = true;
+
+func _process(delta):
+	block = (position / Vector2(8,8)).floor()
+	chunk = (position / Vector2(640,640)).floor()
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
