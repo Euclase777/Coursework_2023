@@ -1,7 +1,5 @@
+@tool
 extends TileMap
-
-@onready var character : CharacterBody2D = $"../Player"
-@onready var chunkmap : TileMap = $"../ChunkMap"
 
 var tiles = []
 var patterns = []

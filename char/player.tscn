@@ -534,12 +534,15 @@ texture = ExtResource("3_0j3mp")
 shape = SubResource("RectangleShape2D_a62mc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-speed_scale = 2.0
 libraries = {
 "": SubResource("AnimationLibrary_sov78")
 }
+speed_scale = 2.0
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sov78")
+}
 tree_root = SubResource("AnimationNodeStateMachine_c3ana")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = -0.00121802
