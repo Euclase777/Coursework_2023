@@ -32,28 +32,33 @@ var current = Vector2i(0,0)
 var roads = {}
 var end = 'w'
 var start= 'e'
+var max = 0
+
+var chunktime
+var tiletime
 
 func make_map():
-	clear()
-	roads = {}
 	roads[current]=road_to_atlas[start+end]
 	var stuck
 	var set_neighbours = Array()
-	for i in 10:
-		current += sides[end]
+
+	current += sides[end]
+	end = pick_new(start)
+	stuck = 0
+	while (check_neighbours(current+sides[end])>2) and (stuck < 200):
+		print("stuck at ", current)
 		end = pick_new(start)
-		stuck = 0
-		while (check_neighbours(current+sides[end])>2) and (stuck < 200):
-			print("stuck at ", current)
-			end = pick_new(start)
-			stuck+=1
-		if stuck == 200:
-			print("ERROR AT:", current)
-		roads[current]=road_to_atlas[start+end]
-		set_cell(0,current,0,roads[current])
-		Events.emit_signal("load_chunk",current, roads[current])
-		start = sides.find_key(-sides[end])
-		
+		stuck+=1
+	if stuck == 200:
+		print("ERROR AT:", current)
+		Events.emit_signal("error_chunk", current)
+	roads[current]=road_to_atlas[start+end]
+	set_cell(0,current,0,roads[current])
+	chunktime=Time.get_ticks_msec()
+	Events.emit_signal("load_chunk",current, roads[current])
+	tiletime=Time.get_ticks_msec()
+	print('Chunk made in ', tiletime - chunktime)
+	start = sides.find_key(-sides[end])
 
 func check_neighbours(cell):
 	var list = 0
@@ -78,7 +83,8 @@ func pick_new(direction):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if abs((player.chunk.length_squared() - current.length_squared()))<3:
+	if abs((player.chunk.length_squared() - current.length_squared()))<6:
+		print(player.chunk)
+		print(current)
 		print('regenerating')
-		print(player.chunk.length_squared() - current.length_squared())
 		make_map()

@@ -263,6 +263,9 @@ sources/0 = SubResource("TileSetAtlasSource_cejso")
 texture_filter = 1
 
 [node name="TileMap" parent="." instance=ExtResource("1_f5npx")]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
 
 [node name="TileMap2" type="TileMap" parent="."]
 visible = false
@@ -274,13 +277,13 @@ layer_0/tile_data = PackedInt32Array(28114973, 0, 196608, 28049437, 65536, 65536
 script = ExtResource("3_eoixk")
 
 [node name="Player" parent="." instance=ExtResource("3_3pc05")]
-position = Vector2(302, -46)
+position = Vector2(982, 325)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(302, -46)
+position = Vector2(982, 325)
 process_callback = 0
 drag_left_margin = 0.1
 drag_top_margin = 0.1
@@ -298,4 +301,7 @@ texture = ExtResource("4_u2xjf")
 offset = Vector2(683, 384)
 
 [node name="ChunkMap" parent="." instance=ExtResource("5_cgga6")]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 tile_set = SubResource("TileSet_ol60n")
