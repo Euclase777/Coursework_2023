@@ -11,5 +11,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	position = 100 * direction
+	position = 120 * direction
 	

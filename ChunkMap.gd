@@ -45,20 +45,24 @@ func make_map():
 	current += sides[end]
 	end = pick_new(start)
 	stuck = 0
-	while (check_neighbours(current+sides[end])>2) and (stuck < 200):
-		print("stuck at ", current)
+	while (check_neighbours(current+sides[end])>1) and (stuck < 200):
+		#print("stuck at ", current)
 		end = pick_new(start)
 		stuck+=1
 	if stuck == 200:
-		print("ERROR AT:", current)
-		Events.emit_signal("error_chunk", current)
+		print("ERROR AT:", current+sides[end])
+		Events.emit_signal("error_chunk", current+sides[end])
 	roads[current]=road_to_atlas[start+end]
 	set_cell(0,current,0,roads[current])
 	chunktime=Time.get_ticks_msec()
 	Events.emit_signal("load_chunk",current, roads[current])
 	tiletime=Time.get_ticks_msec()
-	print('Chunk made in ', tiletime - chunktime)
+	#print('Chunk made in ', tiletime - chunktime)
 	start = sides.find_key(-sides[end])
+	while roads.size()>50:
+		erase_cell(0,roads.keys()[0])
+		Events.emit_signal("erase_chunk",roads.keys()[0])
+		roads.erase(roads.keys()[0])
 
 func check_neighbours(cell):
 	var list = 0
@@ -83,10 +87,10 @@ func pick_new(direction):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if abs((player.chunk.length_squared() - current.length_squared()))<6:
-		print(player.chunk)
-		print(current)
-		print('regenerating')
+	if abs((player.chunk.length_squared() - current.length_squared()))<20:
+		#print(player.chunk)
+		#print(current)
+		#print('regenerating')
 		make_map()
 	if Input.is_action_just_pressed("debug"):
 		visible = not visible
