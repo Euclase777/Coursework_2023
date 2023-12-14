@@ -2,7 +2,7 @@ extends TileMap
 
 @onready var character : CharacterBody2D = $"../Player"
 @onready var chunkmap : TileMap = $"../ChunkMap"
-const chunk_size = 80 
+const chunk_size = 40 
 var tiles = []
 var patterns = []
 var type_to_pattern={}
@@ -10,6 +10,7 @@ var type_to_pattern={}
 func _ready():
 	Events.load_chunk.connect(self._on_Events_load_chunk)
 	Events.error_chunk.connect(self._on_Events_error_chunk)
+	Events.erase_chunk.connect(self._on_Events_erase_chunk)
 	for i in 6:
 		tiles = []
 		for x in chunk_size:
@@ -22,13 +23,13 @@ func _ready():
 					 Vector2i(0,1):patterns[3], Vector2i(1,1):patterns[5], Vector2i(2,1):patterns[0]}
 
 func _on_Events_load_chunk(chunk, type):
-	print(chunk,' generating at ',Time.get_ticks_msec())
+	#print(chunk,' generating at ',Time.get_ticks_msec())
 	tiles = type_to_pattern[type].get_used_cells()
 	for i in len(tiles):
 		tiles[i]+=chunk_size*chunk
-	print('Tiles array done at ',Time.get_ticks_msec())
+	#print('Tiles array done at ',Time.get_ticks_msec())
 	set_cells_terrain_connect(0,tiles,0,0)
-	print('Tiles done at ',Time.get_ticks_msec())
+	#print('Tiles done at ',Time.get_ticks_msec())
 
 
 
@@ -36,6 +37,13 @@ func _on_Events_error_chunk(chunk):
 	for x in chunk_size:
 		for y in chunk_size:
 			erase_cell(0,Vector2i(x,y)+chunk_size*chunk)
+	#print(chunk,' error. Erased')
+
+func _on_Events_erase_chunk(chunk):
+	for x in chunk_size:
+		for y in chunk_size:
+			erase_cell(0,Vector2i(x,y)+chunk_size*chunk)
+	#print(chunk,' overflow. Erased')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

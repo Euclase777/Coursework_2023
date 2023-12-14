@@ -1,22 +1,65 @@
-[gd_scene load_steps=4 format=3 uid="uid://ghgwl0pwt3vq"]
+[gd_scene load_steps=6 format=3 uid="uid://ghgwl0pwt3vq"]
 
-[ext_resource type="FontFile" uid="uid://cqi2keh3mhkpf" path="res://fonts/SdglitchdemoRegular-YzROj.ttf" id="1_2r3cj"]
 [ext_resource type="Script" path="res://HUD.gd" id="1_6uw8e"]
+[ext_resource type="FontFile" uid="uid://bwd442elqtlrd" path="res://fonts/Hacked Cyr.ttf" id="2_b4sts"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx6l4"]
 line_spacing = 0.0
-font = ExtResource("1_2r3cj")
-font_size = 24
+font = ExtResource("2_b4sts")
+font_size = 36
 font_color = Color(0, 0.643137, 0.756863, 1)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yikq0"]
+line_spacing = 0.0
+font = ExtResource("2_b4sts")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8rw7"]
+line_spacing = 0.0
+font = ExtResource("2_b4sts")
+font_size = 36
+font_color = Color(0, 0.643137, 0.756863, 1)
+outline_size = 10
+outline_color = Color(1, 1, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_6uw8e")
 
 [node name="LabelTime" type="Label" parent="."]
-offset_left = 16.0
-offset_right = 267.0
-offset_bottom = 33.0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 269.0
+offset_bottom = 57.0
 text = "TIME:"
 label_settings = SubResource("LabelSettings_vx6l4")
+
+[node name="LabelDebug" type="Label" parent="."]
+visible = false
+offset_top = 549.0
+offset_right = 123.0
+offset_bottom = 648.0
+text = "THREAT CHUNK:
+TARGET CHUNK:
+THREAT SPEED:"
+label_settings = SubResource("LabelSettings_yikq0")
+
+[node name="LabelScore" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 57.0
+offset_right = 172.0
+offset_bottom = 108.0
+text = "SCORE: "
+label_settings = SubResource("LabelSettings_vx6l4")
+
+[node name="LabelAdd" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 96.0
+offset_right = 59.0
+offset_bottom = 119.0
+text = "+100"
+label_settings = SubResource("LabelSettings_k8rw7")

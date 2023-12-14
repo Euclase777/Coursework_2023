@@ -18,7 +18,7 @@ func _ready():
 
 func _process(delta):
 	block = (position / Vector2(8,8)).floor()
-	chunk = (position / Vector2(640,640)).floor()
+	chunk = (position / Vector2(320,320)).floor()
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.

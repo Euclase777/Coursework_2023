@@ -16,8 +16,8 @@ func on_enter():
 
 func blink():
 	if can_blink:
-		character.position.y += 100 * character.direction.y
-		character.position.x += 100 * character.direction.x
+		character.position.y += 120 * character.direction.y
+		character.position.x += 120 * character.direction.x
 		character.velocity.y = 0
 		character.velocity.x = 0
 

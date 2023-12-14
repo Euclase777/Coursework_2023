@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://l1mal0fdrabs"]
+
+[ext_resource type="Script" path="res://sound/SoundBus.gd" id="1_15q2i"]
+[ext_resource type="AudioStream" uid="uid://r8om16ibhtfk" path="res://sound/tunetank.com_5395_arcade-machine_by_nuclear-wave.mp3" id="1_v212l"]
+
+[node name="SoundBus" type="Node"]
+script = ExtResource("1_15q2i")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_v212l")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
