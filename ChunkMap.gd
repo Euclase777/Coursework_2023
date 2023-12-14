@@ -88,3 +88,5 @@ func _process(delta):
 		print(current)
 		print('regenerating')
 		make_map()
+	if Input.is_action_just_pressed("debug"):
+		visible = not visible

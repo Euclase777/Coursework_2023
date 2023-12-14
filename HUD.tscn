@@ -1,36 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://ghgwl0pwt3vq"]
+[gd_scene load_steps=4 format=3 uid="uid://ghgwl0pwt3vq"]
 
 [ext_resource type="FontFile" uid="uid://cqi2keh3mhkpf" path="res://fonts/SdglitchdemoRegular-YzROj.ttf" id="1_2r3cj"]
 [ext_resource type="Script" path="res://HUD.gd" id="1_6uw8e"]
-[ext_resource type="Texture2D" uid="uid://2spsq350ytub" path="res://sprites/hud/JumpbarUnder.png" id="2_qcrod"]
-[ext_resource type="Texture2D" uid="uid://ch8nofxc3hb2h" path="res://sprites/hud/JumpbarProgress.png" id="3_bh1b5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx6l4"]
 line_spacing = 0.0
 font = ExtResource("1_2r3cj")
 font_size = 24
 font_color = Color(0, 0.643137, 0.756863, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_6uw8e")
 
-[node name="Label" type="Label" parent="."]
+[node name="LabelTime" type="Label" parent="."]
 offset_left = 16.0
-offset_right = 175.0
-offset_bottom = 67.0
-text = "TIME:
-DIST:"
+offset_right = 267.0
+offset_bottom = 33.0
+text = "TIME:"
 label_settings = SubResource("LabelSettings_vx6l4")
-
-[node name="JumpBar" type="TextureProgressBar" parent="."]
-custom_minimum_size = Vector2(98, 30)
-offset_left = 14.0
-offset_top = 74.0
-offset_right = 52.0
-offset_bottom = 104.0
-value = 50.0
-nine_patch_stretch = true
-stretch_margin_left = 21
-stretch_margin_right = 17
-texture_under = ExtResource("2_qcrod")
-texture_progress = ExtResource("3_bh1b5")
