@@ -20,6 +20,10 @@ config/icon="res://sprites/favicon.png"
 Events="*res://Events.gd"
 SoundBus="*res://sound/SoundBus.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Coursework 2023"

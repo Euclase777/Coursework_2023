@@ -45,7 +45,7 @@ func make_map():
 	current += sides[end]
 	end = pick_new(start)
 	stuck = 0
-	while (check_neighbours(current+sides[end])>1) and (stuck < 200):
+	while (check_neighbours(current+sides[end])>2) and (stuck < 200):
 		#print("stuck at ", current)
 		end = pick_new(start)
 		stuck+=1
@@ -78,16 +78,11 @@ func pick_new(direction):
 	for side in sides:
 		if side != direction:
 			out.append(side)
-#		if direction != 'w':
-#			out.append('w')
-#		else:
-#			out.append('n')
-#			out.append('s')
 	return out[randi()%out.size()]
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if abs((player.chunk.length_squared() - current.length_squared()))<20:
+	if abs((player.chunk.length_squared() - current.length_squared()))<30:
 		#print(player.chunk)
 		#print(current)
 		#print('regenerating')

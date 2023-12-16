@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bk0mmp6sbwjly"]
+[gd_scene load_steps=15 format=3 uid="uid://bk0mmp6sbwjly"]
 
 [ext_resource type="PackedScene" uid="uid://bqwsgj5pn187s" path="res://tile_map.tscn" id="1_f5npx"]
 [ext_resource type="PackedScene" uid="uid://d33fk2rnycy2j" path="res://char/player.tscn" id="3_3pc05"]
+[ext_resource type="Script" path="res://BG.gd" id="4_5jmkv"]
 [ext_resource type="Texture2D" uid="uid://ciy2nn7geug2v" path="res://sprites/background.png" id="4_u2xjf"]
 [ext_resource type="PackedScene" uid="uid://bc0h7spkvulqv" path="res://chunk_map.tscn" id="5_cgga6"]
 [ext_resource type="PackedScene" uid="uid://ghgwl0pwt3vq" path="res://HUD.tscn" id="6_fy8vm"]
@@ -59,6 +60,7 @@ motion_mirroring = Vector2(1366, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource("4_u2xjf")
 offset = Vector2(683, 384)
+script = ExtResource("4_5jmkv")
 
 [node name="ChunkMap" parent="." instance=ExtResource("5_cgga6")]
 process_thread_group = 1
@@ -82,10 +84,8 @@ visible = false
 script = ExtResource("9_le6h3")
 
 [node name="ColorRect" type="ColorRect" parent="PauseLayer"]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 1154.0
-offset_bottom = 650.0
+offset_right = 1152.0
+offset_bottom = 648.0
 color = Color(0, 0, 0, 0.678431)
 
 [node name="PauseUI" type="Control" parent="PauseLayer"]
