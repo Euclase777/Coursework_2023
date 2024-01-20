@@ -520,7 +520,7 @@ states/jump_end/position = Vector2(507, 12.7263)
 states/wall_slide/node = SubResource("AnimationNodeAnimation_jqcgg")
 states/wall_slide/position = Vector2(512.333, -85.9403)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_5cwxh"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_fgfs4"), "jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_gtbl3"), "Move", "jump_end", SubResource("AnimationNodeStateMachineTransition_a3qid"), "jump_end", "Move", SubResource("AnimationNodeStateMachineTransition_tkw6c"), "jump_end", "wall_slide", SubResource("AnimationNodeStateMachineTransition_8q1a1"), "wall_slide", "jump_end", SubResource("AnimationNodeStateMachineTransition_nlkew"), "jump_end", "blink", SubResource("AnimationNodeStateMachineTransition_6vkwh"), "blink", "jump_end", SubResource("AnimationNodeStateMachineTransition_p4ohq"), "blink", "Move", SubResource("AnimationNodeStateMachineTransition_kixx5"), "jump_end", "dash", SubResource("AnimationNodeStateMachineTransition_8dj4o"), "dash", "jump_end", SubResource("AnimationNodeStateMachineTransition_d5esk"), "dash", "Move", SubResource("AnimationNodeStateMachineTransition_keqqx")]
-graph_offset = Vector2(154, -30.3531)
+graph_offset = Vector2(-42, -135.353)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oy7bf"]
 
